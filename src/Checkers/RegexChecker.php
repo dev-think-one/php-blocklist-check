@@ -48,9 +48,7 @@ class RegexChecker implements BlocklistChecker
     protected function getEntityValue(mixed $entity, string $field): mixed
     {
         if (is_array($entity)) {
-            if (array_key_exists($field, $entity)) {
-                return $entity[ $field ];
-            }
+            return $this->getArrayValue($entity, $field);
         } elseif (is_object($entity)) {
             if (property_exists($entity, $field)) {
                 return $entity->{$field};
@@ -59,6 +57,46 @@ class RegexChecker implements BlocklistChecker
             } elseif (method_exists($entity, 'getAttribute')) {
                 return $entity->getAttribute($field);
             }
+        }
+
+        throw new BlockListCheckException("Field [$field] value not found.");
+    }
+
+    /**
+     * Get field value from array.
+     *
+     * @param mixed $entity
+     * @param string $field
+     *
+     * @return mixed
+     * @throws BlockListCheckException
+     */
+    protected function getArrayValue(array $entity, string $field): mixed
+    {
+        if (array_key_exists($field, $entity)) {
+            return $entity[ $field ];
+        }
+
+        throw new BlockListCheckException("Field [$field] value not found.");
+    }
+
+    /**
+     * Get field value from object.
+     *
+     * @param object $entity
+     * @param string $field
+     *
+     * @return mixed
+     * @throws BlockListCheckException
+     */
+    protected function getObjectValue(object $entity, string $field): mixed
+    {
+        if (property_exists($entity, $field)) {
+            return $entity->{$field};
+        } elseif (method_exists($entity, 'blocklistCheckValue')) {
+            return $entity->blocklistCheckValue($field);
+        } elseif (method_exists($entity, 'getAttribute')) {
+            return $entity->getAttribute($field);
         }
 
         throw new BlockListCheckException("Field [$field] value not found.");
