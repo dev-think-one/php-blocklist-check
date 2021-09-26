@@ -1,4 +1,4 @@
-# Laravel geonames.
+# PHP block list check.
 
 ![Packagist License](https://img.shields.io/packagist/l/yaroslawww/php-blocklist-check?color=%234dc71f)
 [![Build Status](https://scrutinizer-ci.com/g/yaroslawww/php-blocklist-check/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yaroslawww/php-blocklist-check/build-status/master)
