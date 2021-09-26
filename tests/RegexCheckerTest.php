@@ -212,4 +212,16 @@ class RegexCheckerTest extends TestCase
         $obj->setValue(['email' => 'value_one', 'foo' => 'bar.uk']);
         $this->checker->check($obj);
     }
+
+    /** @test */
+    public function check_scalar_value_exception()
+    {
+        $this->checker
+            ->setFields(['email', 'my_filed'])
+            ->setPatterns(['/.*\.uk$/']);
+
+        $this->expectException(BlockListCheckException::class);
+
+        $this->checker->check('data');
+    }
 }
