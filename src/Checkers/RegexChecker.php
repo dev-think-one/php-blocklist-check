@@ -50,13 +50,7 @@ class RegexChecker implements BlocklistChecker
         if (is_array($entity)) {
             return $this->getArrayValue($entity, $field);
         } elseif (is_object($entity)) {
-            if (property_exists($entity, $field)) {
-                return $entity->{$field};
-            } elseif (method_exists($entity, 'blocklistCheckValue')) {
-                return $entity->blocklistCheckValue($field);
-            } elseif (method_exists($entity, 'getAttribute')) {
-                return $entity->getAttribute($field);
-            }
+            return $this->getObjectValue($entity, $field);
         }
 
         throw new BlockListCheckException("Field [$field] value not found.");
