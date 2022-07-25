@@ -16,7 +16,7 @@ class BlocklistProcessorTest extends TestCase
         $this->assertEmpty($processor->getCheckers());
         $this->assertTrue(is_array($processor->getCheckers()));
 
-        $processor = new BlocklistProcessor([
+        $processor   = new BlocklistProcessor([
             $checker = new RegexChecker(
                 [ '/.*uk$/', '/.*com$/' ],
                 [ 'email', 'my_filed', 'other_field' ],
@@ -46,7 +46,7 @@ class BlocklistProcessorTest extends TestCase
     /** @test */
     public function correct_passed()
     {
-        $processor = new BlocklistProcessor([
+        $processor   = new BlocklistProcessor([
             $checker = new RegexChecker(
                 [ '/.*uk$/', '/.*com$/' ],
                 [ 'email', 'my_filed' ],
