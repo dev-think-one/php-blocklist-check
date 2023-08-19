@@ -1,15 +1,15 @@
 {
-    "name": "yaroslawww/php-blocklist-check",
+    "name": "think.studio/php-blocklist-check",
     "description": "Simple blocklist validator.",
     "keywords": [
         "blocklist"
     ],
-    "homepage": "https://github.com/yaroslawww/php-blocklist-check",
+    "homepage": "https://github.com/dev-think-one/php-blocklist-check",
     "license": "MIT",
     "authors": [
         {
             "name": "Yaroslav Georgitsa",
-            "email": "yaroslav.georgitsa@gmail.com",
+            "email": "yg@think.studio",
             "homepage": "https://github.com/yaroslawww",
             "role": "Developer"
         }
